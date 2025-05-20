@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hidden Friend</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #dfe9f3, #ffffff);
+      color: #2c3e50;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 3em;
+      color: #2d3436;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
+    }
+    .button {
+      background-color: #00cec9;
+      color: white;
+      padding: 15px 25px;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 10px;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+    .button:hover {
+      background-color: #0984e3;
+    }
+    .language {
+      margin-top: 40px;
+    }
+    .logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    form {
+      margin-top: 30px;
+    }
+    textarea {
+      width: 80%;
+      height: 100px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+    .messages {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+  <script>
+    let messages = [];
+
+    function sendMessage() {
+      const textarea = document.getElementById('message');
+      const msg = textarea.value.trim();
+      if (msg) {
+        messages.push(msg);
+        textarea.value = '';
+        alert('Message sent anonymously!');
+      } else {
+        alert('Please write a message.');
+      }
+    }
+
+    function readMessage() {
+      if (messages.length > 0) {
+        const randomIndex = Math.floor(Math.random() * messages.length);
+        const randomMessage = messages[randomIndex];
+        document.getElementById('display').innerText = randomMessage;
+      } else {
+        document.getElementById('display').innerText = 'No messages yet. Be the first to send one!';
+      }
+    }
+  </script>
+</head>
+<body>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Heart_icon_red_hollow.svg/2048px-Heart_icon_red_hollow.svg.png" alt="Hidden Friend Logo" class="logo">
+  <h1>Welcome to Hidden Friend</h1>
+  <p>Send and receive anonymous messages full of love and positivity.</p>
+
+  <form onsubmit="event.preventDefault(); sendMessage();">
+    <textarea id="message" placeholder="Write your hidden message here..."></textarea><br>
+    <button class="button" type="submit">Send a Hidden Message</button>
+  </form>
+
+  <button class="button" onclick="readMessage()">Read a Random Message</button>
+
+  <div id="display" class="messages"></div>
+
+  <div class="language">
+    <p>Select your language:</p>
+    <a class="button" href="#">العربية</a>
+    <a class="button" href="#">English</a>
+    <a class="button" href="#">Français</a>
+    <a class="button" href="#">Español</a>
+  </div>
+</body>
+</html>
